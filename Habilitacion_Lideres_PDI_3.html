@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habilitación de Líderes · Proceso PDI — Podemos Progresar</title>
+<style>
+  :root{
+    --lime:#ABC544;
+    --lime-d:#94ad33;
+    --green:#158158;
+    --green-d:#0e6243;
+    --ink:#1c2417;
+    --slate:#54614a;
+    --paper:#ffffff;
+    --bg:#f3f5ee;
+    --line:#e4e9da;
+    --purple:#6b3fa0;
+    --soft:#f7f9f1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;
+    gap:18px;padding:10px 24px}
+  .topbar img{height:34px;display:block}
+  .topbar nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+  .topbar nav a{font-size:13px;font-weight:600;color:var(--slate);text-decoration:none;
+    padding:7px 12px;border-radius:8px;transition:.18s}
+  .topbar nav a:hover{background:var(--soft);color:var(--green-d)}
+  @media(max-width:720px){.topbar nav{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{background:linear-gradient(160deg,#11261c 0%,#15402c 55%,#1a5238 100%);
+    color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(171,197,68,.35),transparent 65%)}
+  .hero .wrap{position:relative;z-index:2;padding:64px 24px 70px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(171,197,68,.18);
+    border:1px solid rgba(171,197,68,.5);color:var(--lime);font-weight:700;font-size:12.5px;
+    letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+  .hero h1{font-size:clamp(28px,4.6vw,46px);line-height:1.12;font-weight:800;margin:22px 0 16px;
+    letter-spacing:-.5px}
+  .hero h1 b{color:var(--lime)}
+  .hero p.lead{font-size:clamp(16px,1.9vw,19px);color:#dfe9d8;max-width:760px}
+  .hero .meta{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+  .chip{font-size:12.5px;font-weight:600;color:#eaf2e0;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);padding:6px 13px;border-radius:8px}
+
+  /* ---------- section frame ---------- */
+  section{padding:60px 0}
+  .kicker{font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--green);margin-bottom:10px}
+  h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.4px;margin-bottom:14px}
+  .sub{color:var(--slate);font-size:16.5px;max-width:780px}
+
+  /* ---------- objection callout ---------- */
+  .objection{background:linear-gradient(135deg,#fff,#f7f9f1);border:1px solid var(--line);
+    border-left:6px solid var(--lime);border-radius:16px;padding:30px 32px;
+    box-shadow:0 10px 30px rgba(20,60,40,.06)}
+  .objection .q{font-size:19px;font-weight:700;color:var(--green-d);margin-bottom:12px}
+  .objection .q::before{content:"“";color:var(--lime);font-size:34px;line-height:0;
+    vertical-align:-12px;margin-right:4px;font-family:Georgia,serif}
+  .objection p{font-size:16.5px;color:var(--ink)}
+  .objection p b{color:var(--green-d)}
+
+  /* ---------- 70-20-10 ---------- */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+  @media(max-width:760px){.grid3{grid-template-columns:1fr}}
+  .model{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;overflow:hidden;transition:.2s}
+  .model:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(20,60,40,.1)}
+  .model .num{font-size:42px;font-weight:800;letter-spacing:-1px}
+  .model .tag{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    margin:4px 0 10px}
+  .model p{font-size:14.5px;color:var(--slate)}
+  .model.exp .num,.model.exp .tag{color:var(--green)}
+  .model.rel .num,.model.rel .tag{color:var(--lime-d)}
+  .model.for .num,.model.for .tag{color:var(--purple)}
+  .model .bar{position:absolute;left:0;bottom:0;height:5px;width:100%}
+  .model.exp .bar{background:var(--green)}
+  .model.rel .bar{background:var(--lime)}
+  .model.for .bar{background:var(--purple)}
+  .model .flag{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;
+    background:#eef6e6;color:var(--green-d);padding:4px 10px;border-radius:6px}
+
+  /* blocks of PDI */
+  .blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:24px;
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  @media(max-width:760px){.blocks{grid-template-columns:1fr}}
+  .blk{padding:22px 22px;border-right:1px solid var(--line);position:relative}
+  .blk:last-child{border-right:none}
+  @media(max-width:760px){.blk{border-right:none;border-bottom:1px solid var(--line)}}
+  .blk .bn{font-size:12px;font-weight:800;color:var(--slate);letter-spacing:.08em;text-transform:uppercase}
+  .blk h4{font-size:16px;margin:6px 0 6px;font-weight:700}
+  .blk p{font-size:14px;color:var(--slate)}
+  .blk.active{background:linear-gradient(180deg,#f3faec,#fff)}
+  .blk.active::before{content:"AQUÍ ENTRAS TÚ";position:absolute;top:14px;right:14px;
+    font-size:10px;font-weight:800;color:#fff;background:var(--green);padding:3px 8px;border-radius:5px;
+    letter-spacing:.05em}
+
+  /* ---------- statement band ---------- */
+  .band{background:var(--lime);color:var(--ink);text-align:center;border-radius:20px;
+    padding:46px 30px}
+  .band .big{font-size:clamp(24px,3.6vw,36px);font-weight:800;letter-spacing:-.5px;line-height:1.2}
+  .band .big s{text-decoration:line-through;text-decoration-color:rgba(28,36,23,.4);opacity:.55;
+    font-weight:700}
+  .band .big em{font-style:normal;background:#fff;padding:2px 14px;border-radius:10px;
+    box-shadow:0 6px 16px rgba(0,0,0,.08)}
+  .band p{margin-top:14px;font-size:16px;color:#33401f;font-weight:600}
+
+  /* ---------- timeline ---------- */
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+  @media(max-width:760px){.tl{grid-template-columns:1fr}}
+  .moment{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0;
+    cursor:pointer;transition:.2s;overflow:hidden;border-top:5px solid var(--lime)}
+  .moment:hover{box-shadow:0 14px 34px rgba(20,60,40,.1);transform:translateY(-2px)}
+  .moment.open{border-top-color:var(--green);box-shadow:0 16px 40px rgba(20,60,40,.14)}
+  .moment .head{padding:22px 22px 18px;display:flex;flex-direction:column;gap:8px}
+  .moment .step{width:38px;height:38px;border-radius:11px;background:var(--green);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
+  .moment .when{font-size:12.5px;font-weight:700;color:var(--green);text-transform:uppercase;
+    letter-spacing:.04em}
+  .moment h4{font-size:17px;font-weight:800;letter-spacing:-.2px}
+  .moment .body{max-height:0;opacity:0;transition:.32s ease;padding:0 22px;
+    border-top:1px solid transparent}
+  .moment.open .body{max-height:340px;opacity:1;padding:18px 22px 24px;border-top-color:var(--line)}
+  .moment .body p{font-size:14.5px;color:var(--slate)}
+  .moment .body .dur{display:inline-block;margin-bottom:10px;font-size:12px;font-weight:700;
+    background:#eef6e6;color:var(--green-d);padding:4px 10px;border-radius:6px}
+  .moment .toggle{font-size:12.5px;font-weight:700;color:var(--green);padding:0 22px 18px;
+    display:flex;align-items:center;gap:6px}
+  .moment .toggle .ar{transition:.25s;display:inline-block}
+  .moment.open .toggle .ar{transform:rotate(180deg)}
+
+  /* ---------- avoid accordions ---------- */
+  .avoid{margin-top:24px;display:grid;gap:12px}
+  .acc{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .acc button{width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    padding:18px 20px;font-size:15.5px;font-weight:700;color:var(--ink);display:flex;
+    align-items:center;gap:14px;font-family:inherit}
+  .acc .x{flex:none;width:26px;height:26px;border-radius:7px;background:#fdecec;color:#c0392b;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .acc .ad{max-height:0;overflow:hidden;transition:.3s;color:var(--slate);font-size:14.5px}
+  .acc.open .ad{max-height:160px}
+  .acc .ad div{padding:0 20px 18px 60px}
+  .acc .chev{margin-left:auto;color:var(--slate);transition:.25s;font-size:13px}
+  .acc.open .chev{transform:rotate(180deg)}
+
+  /* ---------- CTA ---------- */
+  .cta{background:linear-gradient(135deg,#15402c,#1a5a3c);color:#fff;border-radius:20px;
+    padding:42px 38px;display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+  .cta .big{flex:1;min-width:260px}
+  .cta h3{font-size:23px;font-weight:800;margin-bottom:8px}
+  .cta h3 b{color:var(--lime)}
+  .cta p{color:#d7e6cf;font-size:15.5px}
+  .cta .act{background:rgba(171,197,68,.14);border:1px solid rgba(171,197,68,.45);
+    border-radius:14px;padding:22px 24px;min-width:230px}
+  .cta .act .dt{font-size:13px;color:var(--lime);font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em}
+  .cta .act .ln{font-size:18px;font-weight:800;margin-top:4px}
+  .cta .act .ds{font-size:13.5px;color:#cfe1c6;margin-top:6px}
+
+  /* ---------- footer ---------- */
+  footer{background:#11261c;color:#9fb594;padding:34px 0 40px;font-size:13.5px}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer b{color:#fff}
+  footer .tribu span{color:var(--lime);font-weight:800}
+  footer a{color:var(--lime);text-decoration:none}
+  .conf{font-size:11.5px;color:#6f855f;border:1px solid #2a4233;padding:4px 10px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <img src="data:image/png;base64,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" alt="Podemos Progresar">
+    <nav>
+      <a href="#contexto">Por qué</a>
+      <a href="#proceso">El proceso</a>
+      <a href="#rol">Tu rol</a>
+      <a href="#momentos">Tus 3 momentos</a>
+      <a href="#evitar">Qué evitar</a>
+      <a href="#ahora">Ahora</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">● Proceso PDI · Sucesión Directiva</span>
+    <h1>Habilitar al talento que <b>sostendrá a Podemos</b> los próximos 20 años</h1>
+    <p class="lead">Uno de tus reportes directos ya participó en un Assessment. Ahora te toca a ti acompañarlo en su plan de desarrollo. En esta guía encontrarás cuándo intervienes y qué se espera de ti como su líder directo.</p>
+  </div>
+</header>
+
+<main>
+
+<section id="contexto">
+  <div class="wrap">
+    <div class="kicker">Por qué existe este proceso</div>
+    <h2>Sucesión y desarrollo directivo, por diseño</h2>
+    <p class="sub" style="margin-bottom:22px">En 2026 Podemos lanzó un proceso formal de sucesión y desarrollo de su cohorte ejecutiva, diseñado junto con <b>BTS</b> —consultoría especializada en assessment de liderazgo en las Américas—. El objetivo: que desde los niveles más altos cada posición clave empiece a desarrollar potenciales sucesores, para sostener el crecimiento y la cultura.</p>
+
+    <div class="objection">
+      <div class="q">Desarrollar a quien viene detrás es una marca de liderazgo de alto nivel.</div>
+      <p>Los líderes que forman a otros no generan reemplazos: <b>generan profundidad organizacional</b>. Y quienes lo hacen son, precisamente, los que tienen más por delante.</p>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">Cómo se construye el PDI</div>
+    <h2>El participante construye su Plan de Desarrollo Individual</h2>
+    <p class="sub">Cada participante fue evaluado con instrumentos <b>BTS</b> (potencial y factores de liderazgo) y <b>Hogan</b> (personalidad y riesgos bajo presión). Con ese insumo construye su PDI en tres bloques y lo presenta a Dirección General.</p>
+
+    <div class="blocks">
+      <div class="blk">
+        <div class="bn">Bloque 1</div>
+        <h4>Perfil</h4>
+        <p>Fortalezas y brechas a partir del reporte de assessment.</p>
+      </div>
+      <div class="blk">
+        <div class="bn">Bloque 2</div>
+        <h4>Objetivos de desarrollo</h4>
+        <p>Qué factores de liderazgo se trabajarán.</p>
+      </div>
+      <div class="blk active">
+        <div class="bn">Bloque 3</div>
+        <h4>Plan de acción 70-20-10</h4>
+        <p>Experiencia, relación y formación. Aquí refinas el plan con tu socio.</p>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="model exp">
+        <div class="num">70</div>
+        <div class="tag">Experiencia</div>
+        <p>Retos, proyectos y exposiciones reales en el día a día. La mayor palanca de desarrollo.</p>
+        <span class="flag">Depende de ti</span>
+        <div class="bar"></div>
+      </div>
+      <div class="model rel">
+        <div class="num">20</div>
+        <div class="tag">Relación</div>
+        <p>Coaching, mentoría y feedback de quienes lo rodean.</p>
+        <span class="flag">Tu guía cuenta</span>
+        <div class="bar"></div>
+      </div>
+      <div class="model for">
+        <div class="num">10</div>
+        <div class="tag">Formación</div>
+        <p>Cursos y contenidos estructurados que complementan.</p>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:22px">Sin tu guía en el Bloque 3, el PDI <b>se queda en papel</b> y no llega con sustento a la presentación de DG. Tú asignas las experiencias que potencian los factores a trabajar de tu socio.</p>
+  </div>
+</section>
+
+<section id="rol">
+  <div class="wrap">
+    <div class="band">
+      <div class="big">En esta fase tu rol no es <s>evaluar</s>. Es <em>habilitar.</em></div>
+      <p>Asignar los retos, proyectos y exposiciones reales que sirven al desarrollo de tu socio.</p>
+    </div>
+  </div>
+</section>
+
+<section id="momentos" style="background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">Tu intervención</div>
+    <h2>Entras en 3 momentos específicos</h2>
+    <p class="sub">Toca una tarjeta para ver qué haces en cada uno.</p>
+
+    <div class="tl">
+      <div class="moment" data-m="1">
+        <div class="head">
+          <div class="step">1</div>
+          <div class="when">20 – 24 jul</div>
+          <h4>Alineación 70-20-10</h4>
+        </div>
+        <div class="body">
+          <span class="dur">Sesión de 60 min</span>
+          <p>Revisas y comprometes las acciones experienciales del plan. Habilitas asignaciones concretas: qué reto, qué proyecto, qué exposición real tomará tu socio.</p>
+        </div>
+        <div class="toggle">Ver detalle <span class="ar">▾</span></div>
+      </div>
+
+      <div class="moment" data-m="2">
+        <div class="head">
+          <div class="step">2</div>
+          <div class="when">31 jul</div>
+          <h4>Refinamiento del plan final</h4>
+        </div>
+        <div class="body">
+          <span class="dur">Fecha límite</span>
+          <p>El participante integra los ajustes derivados de la sesión de alineación. El PDI queda listo en su versión final antes de la firma.</p>
+        </div>
+        <div class="toggle">Ver detalle <span class="ar">▾</span></div>
+      </div>
+
+      <div class="moment" data-m="3">
+        <div class="head">
+          <div class="step">3</div>
+          <div class="when">10 – 14 ago</div>
+          <h4>Firma del PDI</h4>
+        </div>
+        <div class="body">
+          <span class="dur">Antes de presentar a DG</span>
+          <p>Lees el PDI completo y firmas los compromisos. Con tu firma el plan llega con respaldo a la presentación a Dirección General.</p>
+        </div>
+        <div class="toggle">Ver detalle <span class="ar">▾</span></div>
+      </div>
+
+      <div class="moment" data-m="4">
+        <div class="head">
+          <div class="step">4</div>
+          <div class="when">Post-visto bueno DG</div>
+          <h4>Seguimiento trimestral</h4>
+        </div>
+        <div class="body">
+          <span class="dur">Cada trimestre</span>
+          <p>Revisas evidencias del avance y ajustas las acciones. El desarrollo se sostiene en el tiempo, no termina con la firma.</p>
+        </div>
+        <div class="toggle">Ver detalle <span class="ar">▾</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="evitar">
+  <div class="wrap">
+    <div class="kicker">Para que la conversación cumpla su propósito</div>
+    <h2>Cuatro cosas que conviene evitar</h2>
+    <div class="avoid">
+      <div class="acc">
+        <button><span class="x">✕</span> Convertir el Bloque 3 en una evaluación de desempeño <span class="chev">▾</span></button>
+        <div class="ad"><div>El PDI es una herramienta de desarrollo, no de medición. La sesión busca habilitar experiencias, no calificar resultados.</div></div>
+      </div>
+      <div class="acc">
+        <button><span class="x">✕</span> Editar o cuestionar las narrativas personales del PDI <span class="chev">▾</span></button>
+        <div class="ad"><div>Son reflexión propia de tu reporte directo. Tu rol es sumar acciones experienciales, no reescribir su autoanálisis.</div></div>
+      </div>
+      <div class="acc">
+        <button><span class="x">✕</span> Dar retroalimentación sobre los resultados Hogan <span class="chev">▾</span></button>
+        <div class="ad"><div>Ese acompañamiento es responsabilidad de BTS. El instrumento Hogan se devuelve en un proceso especializado, fuera de tu sesión.</div></div>
+      </div>
+      <div class="acc">
+        <button><span class="x">✕</span> Adelantar conclusiones de promoción o cambio de rol <span class="chev">▾</span></button>
+        <div class="ad"><div>Este proceso no decide promociones ni movimientos. Evita generar expectativas sobre algo que se resuelve por otra vía.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ahora" style="padding-top:20px">
+  <div class="wrap">
+    <div class="cta">
+      <div class="big">
+        <h3>Lo que necesitas hacer <b>ahora</b></h3>
+        <p>Un solo paso te deja listo para arrancar. Tu contribución es clave para seguir impulsando el crecimiento de la tribu.</p>
+      </div>
+      <div class="act">
+        <div class="dt">Agenda</div>
+        <div class="ln">60 min con tu reporte directo</div>
+        <div class="ds">En la semana del 20 al 24 de julio. Reserva ya el espacio en tu calendario.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="tribu">#Tribu<span>Podemos</span></div>
+      <div style="margin-top:6px">Contacto · <b>Angie Rangel</b>, Desarrollo Organizacional — <a href="mailto:m.rangel@podemos.mx">m.rangel@podemos.mx</a></div>
+    </div>
+    <div class="conf">Confidencial · Uso interno</div>
+  </div>
+</footer>
+
+<script>
+  // Timeline accordions
+  document.querySelectorAll('.moment').forEach(function(m){
+    m.addEventListener('click',function(){
+      var wasOpen=m.classList.contains('open');
+      document.querySelectorAll('.moment').forEach(function(o){o.classList.remove('open')});
+      if(!wasOpen) m.classList.add('open');
+    });
+  });
+  // Default open first moment
+  var first=document.querySelector('.moment');if(first)first.classList.add('open');
+
+  // Avoid accordions
+  document.querySelectorAll('.acc button').forEach(function(b){
+    b.addEventListener('click',function(){
+      b.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
